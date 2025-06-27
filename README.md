@@ -1,8 +1,4 @@
-# Job pplication Tracker Project
-
-==========================
- Job Application Tracker
-==========================
+# Job Application Tracker Project
 
 🎯 Project Overview:
 A full-stack Job Application Tracker that allows users to log job applications, update their status, and manage interactions throughout the job search process. Supports both custom login and OAuth (Google, GitHub).
