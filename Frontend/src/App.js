@@ -1,13 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import Login from "./pages/Login"; 
 
-function App() {
-  return (
-   <div className="min-h-screen bg-blue-500 flex items-center justify-center">
-      <h1 className="text-white text-4xl font-bold">Tailwind is Working! 🎉</h1>
-    </div>
-    
+const App = () => {
+   return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        </Routes>
+    </Router>
   );
-}
+};  
 
 export default App;
