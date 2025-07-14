@@ -66,6 +66,7 @@ public class AuthenticationController {
     public ResponseEntity<?> logout(HttpSession session)
     {
         session.invalidate();
+        System.out.println("Session invalidated: " + session.getId());
         return ResponseEntity.ok("Logout successful");     
     }
 

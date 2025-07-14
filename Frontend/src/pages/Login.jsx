@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import {FaGithub, FaGoogle} from "react-icons/fa";
 import {Link} from "react-router-dom";
 
@@ -9,6 +10,7 @@ const Login = () => {
     const [password, setPassword] = useState("");  
     const [error, setError] = useState("");
     const [showPassword, setShowPassword] = useState(false);
+    const navigate = useNavigate();
 
     const validatingLoginDetails = () => {
         if(!email || !password) {
@@ -43,7 +45,11 @@ const Login = () => {
                 }
             );
             console.log("Login successful:", response.data);
-            setError(""); // Clear any previous error
+            setError("");
+            localStorage.setItem("isLoggedIn","true")
+            navigate("/dashboard");
+
+           
         }catch (err) {
             console.error("Login failed:", err);
             setError("Invalid email or password");

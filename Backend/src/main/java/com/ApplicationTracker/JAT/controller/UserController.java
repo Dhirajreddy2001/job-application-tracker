@@ -31,7 +31,7 @@ public class UserController {
         
     }
     @GetMapping("/me")
-public ResponseEntity<?> getCurrentUser(HttpSession session) {
+    public ResponseEntity<?> getCurrentUser(HttpSession session) {
     Long userId = (Long) session.getAttribute("userId");
 
     if (userId == null) {
@@ -48,6 +48,20 @@ public ResponseEntity<?> getCurrentUser(HttpSession session) {
         userService.createUser(dto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+    // @PutMapping("/profile")
+    // public ResponseEntity<Void> updateProfile(@RequestBody UserDTO updatedUserDetails, HttpSession session)
+    // {
+    //     Long userId = (Long) session.getAttribute("userId");
+    //     if(userId == null)
+    //     {
+    //         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+
+    //     }
+
+    //     userService.updateUser(userId, updatedUserDetails);
+    //     return ResponseEntity.ok().build();
+    // }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
