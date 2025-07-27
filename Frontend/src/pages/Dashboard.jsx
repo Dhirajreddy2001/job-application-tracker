@@ -6,19 +6,20 @@ const Dashboard = () => {
   const [username, setUsername] = useState("");
   const [recentApplications, setRecentApplications] = useState([]);
   const navigate = useNavigate();
-
+  
+  const API_BASE_URL= process.env.REACT_APP_API_URL;
   useEffect(() => {
     const fetchUserAndApplications = async () => {
       try {
         
-        const userResponse = await axios.get("http://localhost:8080/api/users/me", {
+        const userResponse = await axios.get(`${API_BASE_URL}/api/users/me`, {
           withCredentials: true,
         });
         setUsername(userResponse.data.firstName);
         //console.log("User data:", userResponse.data);
 
        
-        const appsResponse = await axios.get("http://localhost:8080/api/jobs/recents", {
+        const appsResponse = await axios.get(`${API_BASE_URL}/api/jobs/recents`, {
           withCredentials: true,
         });
         setRecentApplications(appsResponse.data);
@@ -33,7 +34,7 @@ const Dashboard = () => {
     };
 
     fetchUserAndApplications();
-  }, [navigate]);
+  }, [navigate, API_BASE_URL]);
 
   const handleAddApplication = () => {
     navigate("/new-application");

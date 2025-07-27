@@ -11,6 +11,8 @@ const Applications = () => {
     const [sortField, setSortField] = useState('');
     const [sortOrder, setSortOrder] = useState('desc');
 
+    const API_BASE_URL= process.env.REACT_APP_API_URL;
+
     // Fetch applications from backend
     const fetchApplications = useCallback(async () => {
         try {
@@ -23,7 +25,7 @@ const Applications = () => {
                 ...(sortOrder && { sortOrder }),
             };
 
-            const response = await axios.get('http://localhost:8080/api/jobs', {
+            const response = await axios.get(`${API_BASE_URL}/api/jobs`, {
                 params,
                 withCredentials: true,
             });
@@ -33,7 +35,7 @@ const Applications = () => {
         } catch (error) {
             console.error('Failed to fetch applications:', error);
         }
-    }, [page, searchTerm, statusFilter, sortField, sortOrder]);
+    }, [page, searchTerm, statusFilter, sortField, sortOrder, API_BASE_URL]);
 
     // Reset to first page when filters change
     useEffect(() => {

@@ -17,7 +17,7 @@ const NewApplication = () => {
     });
 
 const [error, setError] = useState("");
-
+const API_BASE_URL= process.env.REACT_APP_API_URL;
 const handleChange = (e) => {
     const {name, value} = e.target;
     setFormData((prev) => ({...prev, [name] : value}));
@@ -27,7 +27,7 @@ const handleChange = (e) => {
 const handleSubmit = async (e) => {
     e.preventDefault();
     try{
-        const res = await axios.post("http://localhost:8080/api/jobs", formData,{
+        const res = await axios.post(`${API_BASE_URL}/api/jobs`, formData,{
         withCredentials: true,
         });
         console.log(res.data);

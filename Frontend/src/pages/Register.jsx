@@ -4,7 +4,9 @@ import { useNavigate } from "react-router-dom";
 
 const Register = () => {
     const navigate = useNavigate();
-
+    
+    const API_BASE_URL= process.env.REACT_APP_API_URL;
+     
     const [firstName, setFirstname] = useState("");
     const [lastName, setLastname] = useState("");
     const [email, setEmail] = useState("");
@@ -35,7 +37,7 @@ const Register = () => {
             return;
         }
         try{
-            const response = await fetch("http://localhost:8080/api/users",{
+            const response = await fetch(`${API_BASE_URL}/api/users`,{
                 method:"POST",
                 headers:{
                     "Content-Type": "application/json",

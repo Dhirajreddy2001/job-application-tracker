@@ -7,6 +7,7 @@ const ApplicationsTable = ({ data, fetchApplications, page, setPage, totalPages 
     return <p className="p-4 text-gray-600">Loading applications...</p>;
   }
 
+  const API_BASE_URL = process.env.REACT_APP_API_URL;
   
   const userId = data[0]?.user?.id;
 
@@ -17,7 +18,7 @@ const ApplicationsTable = ({ data, fetchApplications, page, setPage, totalPages 
         return;
       }
 
-      await axios.patch(`http://localhost:8080/api/jobs/user/${userId}/job/${jobId}/status`, null, {
+      await axios.patch(`${API_BASE_URL}/api/jobs/user/${userId}/job/${jobId}/status`, null, {
         params: { newStatus },
         withCredentials:true
       });

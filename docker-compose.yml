@@ -1,0 +1,43 @@
+version: '3.9'
+
+services:
+  backend:
+    build: ./backend
+    container_name: jat-backend
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - my-app-network
+    depends_on:
+      - wait-for-oracle
+      - wait-for-redis
+
+  frontend:
+    build: ./frontend
+    container_name: jat-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_API_URL=http://backend:8080/api
+    networks:
+      - my-app-network
+    depends_on:
+      - backend
+
+  wait-for-oracle:
+    image: busybox
+    command: sh -c "until nc -z oracle-ee 1521; do echo waiting for Oracle DB...; sleep 3; done"
+    networks:
+      - my-app-network
+
+  wait-for-redis:
+    image: busybox
+    command: sh -c "until nc -z redis-jat 6379; do echo waiting for Redis...; sleep 3; done"
+    networks:
+      - my-app-network
+
+networks:
+  my-app-network:
+    external: true
