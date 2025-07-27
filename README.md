@@ -1,9 +1,9 @@
 # Job Application Tracker Project
 
-🎯 Project Overview:
+Project Overview:
 A full-stack Job Application Tracker that allows users to log job applications, update their status, and manage interactions throughout the job search process. Supports both custom login and OAuth (Google, GitHub).
 
-🛠 Tech Stack:
+Tech Stack:
 Frontend:
 - React.js
 - Tailwind CSS
@@ -23,14 +23,14 @@ DevOps/Infra:
 - Docker
 - Docker Compose
 - GitHub Actions
-- Heroku or EC2 for hosting
+  
 
-📊 Database:
+Database:
 - Table 1: jat_users (login, profile info)
 - Table 2: jat_jobs (job entries per user)
 - Redis: token/session caching
 
-🔁 Application Flow:
+Application Flow:
 1. User lands on Login Page (OAuth or app login)
 2. On login, JWT is issued and stored
 3. User is redirected to Dashboard:
@@ -40,7 +40,8 @@ DevOps/Infra:
 5. User can add a new job application
 6. User can view/update a specific application (popup)
 
-👤 User Interaction:
+User Interaction:
 - Login > Home > Applications > Add/View/Edit > Logout
 
-![alt text](final_ui_all_screens.png)
+Steps: First create databses from the db folder add test data.
+       Second run backend . Then once backend is fully running run frontend application will open in port 3000.
